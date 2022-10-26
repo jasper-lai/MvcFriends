@@ -17,7 +17,7 @@ PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> dotnet new gitignore
 
 # ----- (2) UI 操作 -----
 
-# ========== 3.. 暫存所有變更 ============
+# ========== 3.. 暫存所有變更 (將所有檔案加入版控) ============
 
 # ----- (1) command line -----
 PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git add .
@@ -180,6 +180,56 @@ PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git add .
 warning: in the working copy of '.vscode/launch.json', LF will be replaced by CRLF the next time Git touches it
 warning: in the working copy of 'Data/DatabaseContext.cs', LF will be replaced by CRLF the next time Git touches it
 warning: in the working copy of 'Lib/Person.cs', LF will be replaced by CRLF the next time Git touches it
+
+# ========== 4..提交認可 ============
+
+# ----- (1) Command Line -----
+PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git commit -m "Initial Commit"
+[master (root-commit) d4be6b0] Initial Commit
+ 95 files changed, 76270 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 .vscode/launch.json
+ create mode 100644 .vscode/tasks.json
+ create mode 100644 00-Readme.sh
+ create mode 100644 01-Readme.sh
+ create mode 100644 Controllers/FriendsController.cs
+
+# 想要移掉 commit, 但出現錯誤
+# https://gitbook.tw/chapters/using-git/reset-commit
+# https://blog.csdn.net/voledmort/article/details/100794005
+# 該倉庫到目前為止只有commit過一次代碼，故已經是head版本，也會報這樣的錯，無需關心直接 commit 或者 rm即可
+# https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting
+# For this reason, git revert should be used to undo changes on a public branch, 
+#              and git reset should be reserved for undoing changes on a private branch. 
+PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git log --oneline
+c1787be (HEAD -> master) Initial Commit
+
+PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git reset c1787be^
+fatal: ambiguous argument 'c1787be^': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+
+# 修改一下文件, 作 commit 看看能否回到前一個 commit
+# --> 取消一個 commit, 把該 commit 的相關檔案, 全部回放到工作區 (非 stage 區, 也非 local repository 區)
+# --> 目的: 把前一個 commit 的修訂取回工作目錄, 進行修改, 再 commit 回去
+PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git log --oneline
+f4e13b0 (HEAD -> master) 01-Readme.sh modified
+c1787be Initial Commit
+
+PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git reset f4e13b0^
+Unstaged changes after reset:
+M       01-Readme.sh
+
+PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   01-Readme.sh
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+# ----- (2) UI 操作 -----
 
 
 # ========= [[附錄]] ==========
