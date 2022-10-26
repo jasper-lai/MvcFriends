@@ -232,6 +232,60 @@ no changes added to commit (use "git add" and/or "git commit -a")
 # ----- (2) UI 操作 -----
 
 
+# ========== 5.. 在 GitHub 建立 repository ============
+# (圖片) 略
+
+# ========== 6.. 將 local repository 送到 GitHub ============
+
+PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git remote add origin https://github.com/jasper-lai/MvcFriends.git
+
+PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git push -u origin master
+Enumerating objects: 127, done.
+Counting objects: 100% (127/127), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (120/120), done.
+Writing objects: 100% (127/127), 981.67 KiB | 506.00 KiB/s, done.
+Total 127 (delta 36), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (36/36), done.
+To https://github.com/jasper-lai/MvcFriends.git
+ * [new branch]      master -> master
+branch 'master' set up to track 'origin/master'.
+
+
+# ========== 7.. 建立分支 ============
+
+# ----- (1) Command Line -----
+
+# 目前在 master
+PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git branch 
+* master
+
+# 建立 feature1 分支, 但仍在 master 分支上
+PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git branch feature1
+PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git branch
+  feature1
+* master
+# 切換至 feature1 分支
+PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git checkout feature1
+Switched to branch 'feature1'
+PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git branch
+* feature1
+  master
+
+# 建立 feature2 分支, 並切換至 feature2 分支
+PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git checkout -b feature2
+Switched to a new branch 'feature2'
+PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git branch
+  feature1
+* feature2
+  master
+
+# 修改文件, 進行 commit
+
+# ----- (2) UI 操作 -----
+
+
+
 # ========= [[附錄]] ==========
 
 # clone 保哥的 github
