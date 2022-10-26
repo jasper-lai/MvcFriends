@@ -254,8 +254,6 @@ branch 'master' set up to track 'origin/master'.
 
 # ========== 7.. 建立分支 ============
 
-# ----- (1) Command Line -----
-
 # 目前在 master
 PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git branch 
 * master
@@ -281,9 +279,51 @@ PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git branch
   master
 
 # 修改文件, 進行 commit
+PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git commit -m "01-Readme.sh in feature2 modified"
+[feature2 7941927] 01-Readme.sh in feature2 modified
+ 1 file changed, 54 insertions(+)
 
-# ----- (2) UI 操作 -----
+# 將 feature2 的修訂, 送交到 GitHub
+PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git push -u origin feature2
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 901 bytes | 180.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+remote: 
+remote: Create a pull request for 'feature2' on GitHub by visiting:
+remote:      https://github.com/jasper-lai/MvcFriends/pull/new/feature2
+remote:
+To https://github.com/jasper-lai/MvcFriends.git
+ * [new branch]      feature2 -> feature2
+branch 'feature2' set up to track 'origin/feature2'.
 
+# ========== 8.. 合併分支 ============
+
+# 切回 master 分支
+PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+
+# 將 feature2 合併至 master
+PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git merge feature2
+Updating 44c6a0d..7941927
+Fast-forward
+ 01-Readme.sh | 54 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+ 
+# 合併後上傳至 GitHub
+PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git push 
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/jasper-lai/MvcFriends.git
+   44c6a0d..7941927  master -> master
+
+# 切至 feature2, 並修訂文件, 利用 UI 上傳至 GitHub
+PS D:\22-Projects.Git\52-ASP.NET Core\MvcFriends> git checkout feature2
+Switched to branch 'feature2'
+Your branch is up to date with 'origin/feature2'.
 
 
 # ========= [[附錄]] ==========
